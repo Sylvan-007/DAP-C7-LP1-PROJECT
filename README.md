@@ -130,212 +130,129 @@ Tasks;
     4. Suggest potential investors to engage with, based on their investment patterns.
 
 ## ARTICLE ON INVESTMENT ANALYSIS OF THE INDIAN START UP ECOSYSTEM
-INTRODUCTION
 
-India’s startup ecosystem has witnessed tremendous growth over the past decade, with burgeoning innovation across various sectors. The influx of funding from domestic and international investors has played a pivotal role in driving this growth. This article delves into a data science project that analyzes the Indian startup-funding ecosystem, uncovering trends, patterns, and insights that shed light on the dynamics of this vibrant landscape. This information will be vital to stakeholders to make data-driven decisions in entering this business ecosystem.
+## Introduction
 
-When the team was assigned this project, we had to understand the data we were working with very well to be able to tackle it head on. Datasets were extracted from different sources. We understood that the data would be uneven thus, cleaning would be quite challenging. We initially thought of merging the dataset and cleaning it all together to be able to perform our EDA(Exploratory Data Analysis).
+India’s startup ecosystem has witnessed tremendous growth over the past decade, driven by innovation across various sectors and significant funding from both domestic and international investors. This article explores a data science project analyzing the Indian startup-funding ecosystem, revealing trends, patterns, and insights that highlight the dynamics of this vibrant landscape. Such information is vital for stakeholders looking to make data-driven decisions in entering this business ecosystem.
 
+## Project Overview
 
-The team followed a CRISP-DM (Cross-Industry Standard Process for Data Mining) approach to work on this project.
-This widely used methodology provides a structured approach to planning and executing data mining/science projects to ensure that data mining/science projects are systematic and that the results are reliable and actionable.
+### Understanding the Data
 
-Following the CRISP-DM approach, the following steps include:
+When assigned this project, our team needed a deep understanding of the data. We extracted datasets from multiple sources, anticipating challenges in cleaning and merging them. Initially, we planned to merge and clean the dataset to perform Exploratory Data Analysis (EDA).
+
+### Methodology: CRISP-DM Approach
+
+We followed the CRISP-DM (Cross-Industry Standard Process for Data Mining) approach, a structured methodology for planning and executing data mining/science projects to ensure systematic, reliable, and actionable results. The steps include:
+
 1. Business Understanding
-
 2. Data Understanding
-
 3. Data Preparation
-
 4. Evaluation
-
 5. Deployment
 
+## Business Understanding
 
-1. Business Understanding
+The first step was crucial as it set the project’s direction. Our team outlined several insights we aimed to uncover from our datasets, forming our business objectives:
 
-The very first step is very crucial as it sets the direction of the entire project. The team came up with some ideas as to the insights we look forward to uncovering from our datasets. These initial ideas formed our business objectives.
+- Understand the ecosystem of start-ups in India.
+- Identify the best course of action to venture into the ecosystem.
+- Identify the best start-ups, sectors, and cities to invest in.
 
-The business objectives team are:
+We formulated hypotheses to test these objectives:
 
-Understand the ecosystem of start-ups in India.
-Identify the best course of action to venture into the ecosystem.
-Identify the best start-ups to invest in.
-Identify the best sectors to invest in.
-Identify the best cities to invest in
+- **Null Hypothesis (H0)**: Funding amounts are evenly distributed across all sectors in the Indian startup ecosystem from 2018 to 2021, and technology-driven startups do not receive higher average funding compared to other sectors.
+- **Alternative Hypothesis (H1)**: Funding amounts are not evenly distributed across all sectors in the Indian startup ecosystem from 2018 to 2021, and technology-driven startups receive higher average funding compared to other sectors.
 
-Hypothesis testing was also formed out of these objectives to determine whether there is enough statistical evidence in our dataset to infer that our objectives are relevant.
-
-Null Hypothesis (H0): Funding amounts are evenly distributed across all sectors in the Indian startup ecosystem from 2018 to 2021, and technology-driven startups do not receive higher average funding compared to other sectors.
-Alternative Hypothesis (H1): Funding amounts are not evenly distributed across all sectors in the Indian startup ecosystem from 2018 to 2021, and technology-driven startups receive higher average funding compared to other sectors.
-
-As business analysts we knew we had to delve deeper by putting on our critical thinking caps to see what further insights that could be found deep within our given dataset. We defined some business questions we were looking forward to answering at the end of the project
-
-These key business questions include:
+We defined key business questions to answer by the end of the project:
 
 1. Which sectors (Top 5) are receiving the most investment in the Indian startup ecosystem?
-2.How do funding amounts vary across different startup sectors, yearly?
+2. How do funding amounts vary across different startup sectors yearly?
 3. At what stage do businesses raise the most money across sectors?
 4. Which are the top 10 locations that received funding?
 5. Are there specific cities that have become hubs for certain industries or types of startups?
 6. Who are the top 3 investors in the top 5 sectors?
 
-2. Data Understanding
+## Data Understanding
 
-We begun this process began by extracting the datasets from its various sources.
+We began by extracting datasets from various sources:
 
-The datasets(2020/2021) were sourced from a github repository, a onedrive account, and a SQL server database.
-The data(2018) at a github repo was read directly using the web url and the dataframe saved as a csv file.
-The data(2019) at a onedrive account was downloaded manually due to permission issues.
-The datasets hosted by a SQL server database were queried, and the respective data frames saved as single files in csv format.
+- 2018 data: Sourced from a GitHub repository.
+- 2019 data: Downloaded manually from a OneDrive account.
+- 2020/2021 data: Queried from a SQL server database.
 
-The data dictionary was created to support our project by clarifying data definitions, ensuring consistency, maintaining data quality, and aiding in data preparation.
+A data dictionary was created to clarify data definitions, ensuring consistency and aiding in data preparation.
 
-3. Data Preparation
+## Data Preparation
 
-Data preparation is a critical step in the data science process, involving the transformation of raw data into a clean and usable format for analysis.
+Data preparation involved transforming raw data into a clean, usable format for analysis. We imported requisite libraries into our Python notebook and followed these steps:
 
-To begin the data preparation process we imported the requisite libraries into our python notebook.
-
-Some of these libraries are:
-
-
-Then, we followed the data preparation process by;
-1. Data Collection: Data was gathered from various sources such as SQL database, one-drive and github repository.
+1. Data Collection: Gathered from SQL database, OneDrive, and GitHub repository.
 2. Data Cleaning:
+    - Handled missing values via imputation, deletion, or algorithms that manage missing data.
+    - Removed duplicate records to ensure data integrity.
+    - Corrected errors like typos, inconsistencies, and inaccuracies.
+    - Merged datasets for 2018–2021 into a single dataframe.
 
-Handling Missing Values: Identifying and managing missing data through techniques such as imputation, deletion, or using algorithms that handle missing values.
-Removing Duplicates: Identifying and eliminating duplicate records to ensure data integrity.
--Correcting Errors: Fixing errors such as typos, inconsistencies, and inaccuracies in the data entries.
-Datasets were cleaned separately for each year, afterwards all 4 years (2018–2021) were concatenated into one single dataframe and was cleaned to ensure our columns and rows were even.
+### Visualization Before Cleaning
 
-A visualization of concatenated dataset before further cleanin
-From this simple visualization, we can see the ‘Amount’ and ‘Sector’ columns have very few null values , whereas columns like ‘Founded’ and ‘Investor’ have a significant number of null values.
+Initial visualizations showed columns like ‘Amount’ and ‘Sector’ had few null values, while columns like ‘Founded’ and ‘Investor’ had significant null values. Further cleaning involved resolving null and duplicate values, mapping and replacing stage column names, and converting the “amount” column from rupees to dollars.
 
-Some further cleaning had to be done to clean the null values. Duplicate values were also found within the datasets and these had to be checked and resolved as well, using the following codes:
+### Data Validation
 
+We ensured the prepared data was correct, complete, and suitable for analysis through rigorous checks and validations.
 
-Checked for duplicates and dropped the duplicate values
+### Visualization After Cleaning
 
-Mapping of names in the stage column names and replacing the stage column values with the new stage.
+Effective data preparation was essential for the success of our project, directly impacting the quality of insights and recommendations.
 
-Converting “amount” column from rupees to dollar
-3. Data Validation
+## Power BI Deployment
 
-Ensuring that the prepared data is correct, complete, and suitable for the intended analysis or modeling task. This involves running checks and validations to detect any remaining issues.
+The final stage of the CRISP-DM method involved deploying our insights using Power BI. We created a comprehensive dashboard to visualize key aspects of the Indian startup ecosystem.
 
-A visualization of the concatenated dataset after cleaning
-The team focused on effective data preparation as it is essential for the success of our project and directly impacts the quality of the insights and our recommendations.
+### Deployment Process
 
-POWER BI DEPLOYMENT
+1. Planning and Preparation: Visualized funding distribution across locations, sectors, and stages.
+2. Licensing**: Used Power BI Pro for sharing and collaboration.
+3. Setting Up Power BI Environment: Created an account and workspace for managing reports and dashboards.
+4. Data Preparation and Modeling:
+    - Imported data from Excel files and databases.
+    - Used Power Query for data transformation.
+    - Established relationships between data tables.
+5. Building Reports and Dashboards:
+    - Designed interactive and visually appealing reports.
+    - Combined reports into a single dashboard.
+6. Publishing and Sharing:
+    - Published reports to the Power BI service.
+    - Shared the dashboard with stakeholders.
+7. Deployment and Maintenance:
+    - Set data refresh schedules to keep the dashboard updated.
+    - Monitored usage and performance for optimal functionality.
 
-The final stage of our CRISP-DM method is the deployment stage. The visualization tool the team used is Power BI.
-The Indian startup ecosystem is vibrant and diverse, with funding spread across various sectors and locations. Leveraging Power BI, we have created a comprehensive dashboard to visualize key aspects of this ecosystem.
-Deployment Process
+### Insights and Conclusions
 
-Planning and Preparation : To visualize funding distribution across locations, sectors, and stages for Indian startups. Data was collected from multiple sources, including venture capital reports, startup databases, and financial records.
-2. Licensing
+The dashboard provided several key insights:
 
-License: Power BI Pro was chosen to enable sharing and collaboration within the organization.
+- **Top Locations Based on Funding Amount: Mumbai leads with 230bn in funding, followed by Bangalore (23bn) and Gurugram (7bn).
+- Total Funding Per Sector: Financial Services received the highest funding, followed by Retail, Undisclosed, IT & Technology, and Education.
+- Average Funding by Stage: Special Funding Types have the highest average funding, followed by Other Funding Types and Late-Stage funding.
+- Distinct Locations and Sectors: The ecosystem spans 61 locations and 17 sectors, showcasing its diversity.
+- Top Investors in the Top 5 Sectors: Leading investors include Alpha Wave Ventures, Facebook, Google, Fidelity, and SoftBank.
 
-3. Setting Up Power BI Environment
+### Key Business Questions Addressed
 
-- Power BI Service: An account was set up, and a workspace was created to store and manage reports and dashboards.
+1. Top 5 Sectors Receiving Most Investment: Financial Services, Retail, IT & Technology, and Education.
+2. Funding Variation by Year: More funds were distributed in 2021, with Financial Services receiving the most funding.
+3. Stage of Highest Funding: Special funding types are prominent at certain growth stages due to varying risk profiles, capital requirements, and strategic alignments.
+4. Top 10 Funded Locations: Maharashtra, followed by other key cities.
+5. Industry Hubs: Bengaluru for IT & Technology, Mumbai for Financial Services and Media, Delhi for Business Services and IT, Gurgaon for Business Services, Hyderabad for IT & Technology and Healthcare.
+6. Top Investors: Specific investors lead in sectors like Education, Financial Services, IT & Technology, and Retail.
 
-4. Data Preparation and Modeling
-- Data Import: Data was imported from Excel files and databases.
-- Data Transformation: Power Query was used to clean and transform the data, ensuring consistency and accuracy.
-- Modeling: Relationships between data tables were established to create a robust data model.
+## Conclusion
 
-5. Building Reports and Dashboards
-- Report Design: Using Power BI Desktop, interactive and visually appealing reports were designed.
-- Dashboard Creation: The reports were combined into a single dashboard, providing a comprehensive view of the ecosystem.
+Our project provided a comprehensive analysis of funding trends within the Indian startup ecosystem, offering actionable insights that drive innovation, growth, and investment. These insights inform strategic decision-making and support the continued evolution and success of the Indian startup landscape. By analyzing and visualizing complex data, we contribute to the dialogue surrounding entrepreneurship, innovation, and investment in India.
 
-6. Publishing and Sharing
-- Publish Reports: The reports were published to the Power BI service..
-- Sharing: The dashboard was shared with stakeholders, enabling them to gain insights into the startup ecosystem.
+## Appreciation
 
-7. Deployment and Maintenance
-Scheduled Refresh: Data refresh schedules were set to keep the dashboard updated with the latest information.
-Monitoring: Usage and performance were monitored to ensure optimal functionality.
+I highly recommend Azubi Africa for their comprehensive and effective programs. Read more about Azubi Africa [here](https://azubiafrica.org) and learn about their life-changing programs.
 
-Insights and Conclusions
-
-The dashboard provides several key insights into the Indian startup ecosystem:
-
-1. Top Locations Based on Funding Amount
-
-- Mumbai is the leading location with a staggering 230bn in funding, followed by Bangalore (23bn) and Gurugram (7bn).
-
-- This indicates that Mumbai is a major hub for startup investments in India.
-
-2. Total Funding Per Sector
-
-- The Financial Services sector has received the highest funding, highlighting investor confidence in fintech and related areas.
-
-- Other well-funded sectors include Retail, Undisclosed, IT & Technology, and Education.
-
-3. Average Funding by Stage
-
-- Special Funding Types have the highest average funding, followed by Other Funding Types and Late-Stage funding.
-
-- Early-stage and mid-stage funding amounts are significantly lower, indicating higher investment risk at initial stages.
-
-4. Distinct Locations and Sectors
-
-The ecosystem spans 61 distinct locations and 17 distinct sectors, showcasing the geographical and sectoral diversity of the Indian startup landscape.
-
-5. Top Investors in the Top 5 Sectors
-
-Leading investors include Alpha Wave Ventures, Facebook, Google, Fidelity, and SoftBank.
-
-Their substantial investments in sectors like financial services and retail demonstrate their strategic focus areas.
-
-6. Count of Sectors Across Different Locations
-
-Bangalore and Mumbai lead in the number of sectors represented, indicating a rich and diverse startup culture.
-
-This visualization helps identify sector concentration across different locations, aiding regional investment strategies.
-
-
-Deploying this Power BI dashboard has provided valuable insights into the Indian startup ecosystem. It enables stakeholders to understand funding trends, identify key players, and make informed decisions. The deployment process, from data preparation to sharing and continuous monitoring, ensures that the dashboard remains a vital tool for analyzing and strategizing within the startup community.
-
-This article highlights the deployment process and key insights from the dashboard, providing a comprehensive overview of how Power BI can be utilized to analyze and visualize complex data effectively.
-
-Which sectors (Top 5) are receiving the most investment in the Indian startup ecosystem?
-From the chart above, it is evident the financial sector received the most funding over the years, amassing hundreds of billions, followed by the Retail sector. The Real Estate, Agriculture, Sports and Energy sector receive little or no funding
-How do funding amounts vary across different startup sectors, yearly
-From the fig. above, more funds were given out in the year 2021 and Financial Services received the most funding.
-At what stage do businesses raise the most money across sectors?
-Companies often receive special types of funding at certain stages of their growth due to several factors:
-Risk Profile: In the early stages, companies are often considered riskier investments due to uncertainties related to their business model, market traction, and technology. As a result, they may seek specialized funding sources such as seed funding or angel investment, which are more willing to take on higher risk in exchange for potential high returns.
-
-Capital Requirements: Different stages of a company’s growth require varying amounts of capital to fund operations, research and development, marketing, and expansion. Specialized funding sources, such as venture capital or private equity, are tailored to meet the capital needs of companies at specific stages, providing larger investments as companies mature.
-
-Strategic Alignment: Investors often specialize in particular stages or industries where they have expertise or strategic interest. For example, early-stage startups may attract angel investors who have experience in entrepreneurship or specific sectors. As companies grow, they may seek venture capital firms that specialize in their industry or stage of growth, providing not only funding but also strategic guidance and networking opportunities.
-
-Valuation and Ownership: Specialized funding sources may offer terms that are more favorable to entrepreneurs, such as higher valuations or less dilution of ownership, particularly in the early stages when companies are still establishing their market position and intellectual property.
-
-Overall, specialized funding at different stages of a company’s growth reflects the evolving needs, risks, and opportunities that accompany each stage, as well as the preferences and expertise of investors.
-
-4. Which are the top 10 locations that received funding?
-From observations in the chart, Maharashtra is the top location which receives the highest funding.
-From observations in the chart, Maharashtra is the top location which receives the highest funding.
-
-5. Are there specific cities that have become hubs for certain industries or types of startups?
-
-The chart indicates that Bengaluru is a significant hub for tech startups, especially in IT & Technology, with the highest concentration across multiple sectors. Mumbai stands out for its high number of startups in Financial Services and Media & Entertainment, making it a finance and media hub. Delhi is prominent in Business Services and IT & Technology, while Gurgaon is notable for its business services startups. Hyderabad also emerges as a hub, particularly for IT & Technology and Healthcare & Life Sciences startups.
-
-6. Who are the top 3 investors in the top 5 sectors?
-
-The top investors in the Education sector are Owl Ventures and Tiger Global Management. In Financial Services, the leading investors include Undisclosed, Tiger Global, and Alpha Wave Ventures II, Tiger Global Management, SoftBank Vision Fund II. For IT & Technology, key investors are SoftBank and the consortium of Facebook, Google, KKR, Silver Lake, while in Retail, the main investors are General Atlantic and Kohlberg Kravis Roberts.
-
-Conclusion
-
-In conclusion, our project offered a comprehensive analysis of funding trends within the Indian startup ecosystem, providing us with actionable insights that drive innovation, growth, and investment. We have uncovered valuable insights that inform strategic decision-making and support the continued evolution and success of the Indian startup landscape. Through our analysis, we sought to contribute to the ongoing dialogue surrounding entrepreneurship, innovation, and investment in India, and pave the way for a future characterized by sustainable growth and prosperity within the Indian startup ecosystem.
-
-Appreciation
-
-I highly recommend Azubi Africa for their comprehensive and effective programs. Read more articles about Azubi Africa here and take a few minutes to visit this link to learn more about Azubi Africa life-changing programs.
-
-Tags: Azubi Data Science
