@@ -1,4 +1,4 @@
-# LP1 PROJECT_INDIAN STARTUP VENTURE -- TEAM FIJI
+# LP1 PROJECT_INDIAN STARTUP VENTURE --
 
 ##  CRISP-DM (Cross-Industry Standard Process for Data Mining) Methodology Application 
 
@@ -256,3 +256,4 @@ Our project provided a comprehensive analysis of funding trends within the India
 
 I highly recommend Azubi Africa for their comprehensive and effective programs. Read more about Azubi Africa [here](https://azubiafrica.org) and learn about their life-changing programs.
 
+Tags: Azubi Data Science
