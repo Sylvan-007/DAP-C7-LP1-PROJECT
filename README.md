@@ -1,4 +1,4 @@
-# LP1 PROJECT_INDIAN STARTUP VENTURE --
+# LP1 PROJECT_INDIAN STARTUP VENTURE 
 
 ##  CRISP-DM (Cross-Industry Standard Process for Data Mining) Methodology Application 
 
